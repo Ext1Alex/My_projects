@@ -1,0 +1,76 @@
+#Функция для шифровки английских слов
+def cypher_eng(txt, step):
+    l = ['!', '#', '$', '%', '&', '*', '+', '-', '=', '?', '@', '^', '_', ' ', ',', '.']
+    result = ''
+    for i in txt:
+        if ord(i.lower()) + step <= 122 and i not in l:
+            result += chr(ord(i) + step)
+        elif i in l:
+            result += i
+        else:
+            order = ord(i) + 96 - 122 + step
+            result += chr(order)
+    return(result)
+
+#Функция дешифровки английских слов
+def decipher_eng(txt, step):
+    l = ['!', '#', '$', '%', '&', '*', '+', '-', '=', '?', '@', '^', '_', ' ', ',', '.']
+    result = ''
+    for i in txt:
+        if ord(i.lower()) - step >= 97 and i not in l:
+            result += chr(ord(i) - step)
+        elif i in l:
+            result += i
+        else:
+            order = ord(i) - 96 + 122 - step
+            result += chr(order)
+    return(result)
+
+#Функция для шифровки русских слов
+def cypher_rus(txt, step):
+    l = ['!', '#', '$', '%', '&', '*', '+', '-', '=', '?', '@', '^', '_', ' ', ',', '.']
+    result = ''
+    for i in txt:
+        if ord(i.lower()) + step <= 1103 and i not in l:
+            result += chr(ord(i) + step)
+        elif i in l:
+            result += i
+        else:
+            order = ord(i) + 1071 - 1103 + step
+            result += chr(order)
+    return(result)
+
+#Функция дешифровки русских слов
+def decipher_rus(txt, step):
+    l = ['!', '#', '$', '%', '&', '*', '+', '-', '=', '?', '@', '^', '_', ' ', ',', '.']
+    result = ''
+    for i in txt:
+        if ord(i.lower()) - step >= 1072 and i not in l:
+            result += chr(ord(i) - step)
+        elif i in l:
+            result += i
+        else:
+            order = ord(i) - 1071 + 1103 - step
+            result += chr(order)
+    return(result)
+
+#Основное тело программы
+print('Добро пожаловать в программу шифровки/дешифровки')
+print('Выберите направление: шифрование - 1, дешифрование - 2')
+direction = int(input())
+print('Выберите язык алфавита: русский - 1, английский - 2')
+language = int(input())
+print('Выберите шаг сдвига (в русском алфавите - от 0 до 32, в английском - от 0 до 25):')
+step = int(input())
+l = ['!', '#', '$', '%', '&', '*', '+', '-', '=', '?', '@', '^', '_', ' ']
+text = input('Введите текст: ')
+if direction == 1:
+    if language == 1:
+        print(cypher_rus(text, step))
+    elif language == 2:
+        print(cypher_eng(text, step))
+else:
+    if language == 1:
+        print(decipher_rus(text, step))
+    elif language == 2:
+        print(decipher_eng(text, step))
