@@ -1,62 +1,66 @@
 import sys
 print('''Здравствуйте!
-Вы открыли калькулятор!
-Список доступных функций:
-"+" - сложение
-"-" - вычитание
-"/" - деление
-"*" - умножение
-"mod" - взятие остатка от деления
-"pow" - возведение в степень
-"div" - целочисленное деление
-Для завершения в конце программы напишите "Нет",
-для продолжения - "Да"
-''')
+         Вы открыли калькулятор!
+         Список доступных функций:
+         "+" - сложение
+         "-" - вычитание
+         "/" - деление
+         "*" - умножение
+         "mod" - взятие остатка от деления
+         "pow" - возведение в степень
+         "div" - целочисленное деление
+         Для завершения в конце программы напишите "Нет",
+         для продолжения - "Да"
+     ''')
+#Создаем внешний цикл
 while True:
-while True:
-while True:
-try:
-a = float(input("Введите первое число: "))
-except ValueError:
-print("Ошибка!")
-continue
-break
-while True:
-try:
-b = float(input("Введите второе число: "))
-except ValueError:
-print("Ошибка!")
-continue
-break
-while True:
-c = input("Введите операцию над числами: ")
-if c == "+":
-print(a + b)
-elif b == 0 and (c == "/" or c == "mod" or c == "div"):
-print("Деление на 0!")
-elif c == "-":
-print(a - b)
-elif c == "/":
-print(a / b)
-elif c == "*":
-print(a * b)
-elif c == "mod":
-print(a % b)
-elif c == "pow":
-print(a ** b)
-elif c == "div":
-print(a // b)
-else:
-print("Неизвестная операция!")
-continue
-break
-while True:
-d = str(input("Продолжить? "))
-if d == "Да" or d == "да":
-break
-elif d == "Нет" or d == "нет":
-print("До свидания!")
-sys.exit()
-else:
-print("Ошибка!")
-continue
+    while True:
+        while True:
+        #Исколючаем возникновение ошибки некорректного значения
+            try:
+                a = float(input("Введите первое число: "))
+            except ValueError:
+                print("Ошибка!")
+                continue
+            break
+        while True:
+            try:
+                b = float(input("Введите второе число: "))
+            except ValueError:
+                print("Ошибка!")
+                continue
+            break
+        #Создаем основной цикл работы программы
+        while True:
+            c = input("Введите операцию над числами: ")
+            if c == "+":
+                print(a + b)
+            elif b == 0 and (c == "/" or c == "mod" or c == "div"):
+                print("Деление на 0!")
+            elif c == "-":
+                print(a - b)
+            elif c == "/":
+                print(a / b)
+            elif c == "*":
+                print(a * b)
+            elif c == "mod":
+                print(a % b)
+            elif c == "pow":
+                print(a ** b)
+            elif c == "div":
+                print(a // b)
+            else:
+                print("Неизвестная операция!")
+                continue
+            break
+        #Создаем цикл повторения/завершения программы
+        while True:
+            d = str(input("Продолжить? "))
+            if d == "Да" or d == "да":
+                break
+            elif d == "Нет" or d == "нет":
+                print("До свидания!")
+                sys.exit()
+            else:
+                print("Ошибка!")
+                continue
