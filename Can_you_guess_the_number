@@ -1,0 +1,84 @@
+import random
+def randomizer():
+    difficulty = input('Укажите, до какого значения будет загадано число: ')
+    flag = False
+    while flag == False:
+        if difficulty.isdigit():
+            difficulty = int(difficulty)
+            flag = True
+        else:
+            print('Неправильный формат данных(Введено не число). Повторите попытку.' )
+            difficulty = input('Укажите, до какого значения будет загадано число: ')
+    n = random.randint(1, difficulty)
+    def is_valid(num):
+        if num.isdigit() and 1 <= int(num) <= difficulty:        
+            return True
+        else:
+            return False
+    attempt = input('Угадайте сгенерированное число: ')
+    is_valid(attempt)
+    if is_valid(attempt) == True:
+        attempt = int(attempt)
+    else:
+        while is_valid(attempt) == False:
+                attempt = input('Неправильный формат данных(Введено не число/число выходит за пределы). Угадайте сгенерированное число: ')
+                is_valid(attempt)
+                if is_valid(attempt) == True:
+                    attempt = int(attempt)
+                    break
+    count = 0
+    if attempt == n:
+        count += 1
+        print('Вы угадали, поздравляем!')
+    else:
+        flag = False
+        while flag == False:
+            if attempt > n:
+                count += 1
+                print('Слишком много, попробуйте еще раз')
+                attempt = input('Угадайте сгенерированное число: ')
+                if is_valid(attempt) == True:
+                    attempt = int(attempt)
+                else:
+                    while is_valid(attempt) == False:
+                        attempt = input('Неправильный формат данных(Введено не число/число выходит за пределы). Угадайте сгенерированное число: ')
+                        is_valid(attempt)
+                        if is_valid(attempt) == True:
+                            attempt = int(attempt)
+                            break
+            elif attempt < n:
+                count += 1
+                print('Слишком мало, попробуйте еще раз')
+                attempt = input('Угадайте сгенерированное число: ')
+                if is_valid(attempt) == True:
+                    attempt = int(attempt)
+                else:
+                    while is_valid(attempt) == False:
+                        attempt = input('Неправильный формат данных(Введено не число/число выходит за пределы). Угадайте сгенерированное число: ')
+                        is_valid(attempt)
+                        if is_valid(attempt) == True:
+                            attempt = int(attempt)
+                            break
+            else:
+                count += 1
+                print('Вы угадали, поздравляем!') 
+                flag = True
+    if count % 10 == 1 and count % 100 != 11:
+        print('Вы использовали {} попытку'.format(count))
+    elif count % 10 == 2 or count % 10 == 3 or count % 10 == 4 and count % 100 != 12 and count % 100 != 13 and count % 100 != 14:
+        print('Вы использовали {} попытки'.format(count))
+    else:
+        print('Вы использовали {} попыток'.format(count))
+    question = input('Сыграем еще раз? (y - да, n - нет) ')
+    while question.lower() != 'y' or question.lower() != 'n':
+        if question.lower() == 'y':
+            randomizer()
+        elif question.lower() == 'n':
+            print('Спасибо за игру! До новых встреч!')
+            break
+        else:
+            print('Вы ввели неверный символ, повторите попытку.')
+            question = input('Сыграем еще раз? (y - да, n - нет) ')
+        return question
+print('Добро пожаловать в игру "Угадай число"')
+randomizer()
